@@ -1,0 +1,13 @@
+Configure POLONIEX_API_KEY and POLONIEX_API_SECRET in environment variable.
+
+Run `poloniex` for details.
+
+------------------------------------
+
+POST https://poloniex.com/tradingApi
+PARAMS:
+  command: <command>
+  nonce: Int(Time() * 1000)
+HEADERS
+  Sign: HMAC_SHA512(API_SECRET, PARAMS).HEX_DIGEST
+  Key: API_KEY

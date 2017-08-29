@@ -1,0 +1,22 @@
+{
+  "name": "polo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "cli-table": "^0.3.1",
+    "commander": "^2.11.0",
+    "node-fetch": "^1.7.2"
+  },
+  "bin": {
+    "poloniex": "./main.js",
+    "poloniex-price": "./price.js",
+    "poloniex-wallet": "./wallet.js",
+    "poloniex-orders": "./orders.js",
+    "poloniex-history": "./history.js",
+    "poloniex-buy": "./buy.js",
+    "poloniex-sell": "./sell.js",
+    "poloniex-replace": "./replace.js",
+    "poloniex-cancel": "./cancel.js"
+  }
+}
