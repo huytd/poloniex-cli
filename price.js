@@ -15,8 +15,20 @@ program.parse(process.argv);
 
 (async () => {
 
-  let response = await fetch('https://api.cryptowat.ch/markets/poloniex/'+(currency || 'eth')+'usd/price');
+  currency = currency || 'eth';
+  let response = await fetch('https://api.cryptowat.ch/markets/poloniex/'+currency+'usd/price');
   let json = await response.json();
-  console.log(json.result.price);
+  console.log('Price: ', json.result.price);
+
+  let ticker_response = await fetch('https://poloniex.com/public?command=returnTicker');
+  let ticker_json = await ticker_response.json();
+  let ticker = ticker_json['USDT_' + currency.toUpperCase()];
+  if (ticker) {
+    console.log('24h High: ', ticker.high24hr);
+    console.log('24h Low: ', ticker.low24hr);
+    console.log('Change: ', (ticker.percentChange * 100).toFixed(2) + '%');
+    console.log('Highest bid: ', ticker.highestBid);
+    console.log('Lowest ask: ', ticker.lowestAsk);
+  }
 
 })();
