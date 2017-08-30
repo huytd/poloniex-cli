@@ -16,6 +16,5 @@ program.parse(process.argv);
 (async () => {
   currency = 'USDT_' + (currency || 'eth').toUpperCase();
   let result = await get_history(currency);
-  console.log(currency);
   console.log(result);
 })();
