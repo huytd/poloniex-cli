@@ -17,6 +17,6 @@ program.parse(process.argv);
 
 (async () => {
   currency = 'USDT_' + (currency || 'eth').toUpperCase();
-  let result = await buy(currency, rate, amount);
+  let result = await buy(currency, rate, (amount / rate));
   console.log(result);
 })();
