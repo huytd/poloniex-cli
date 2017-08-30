@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 
 const program = require('commander');
+const call = require('./lib.js').call;
+const Table = require('cli-table');
  
 let currency;
 program
@@ -12,21 +14,21 @@ program
  
 program.parse(process.argv);
 
-const call = require('./lib.js').call;
-
 (async () => {
 
+  let output = new Table();
   let result = await call('returnCompleteBalances');
   let usd = result.USDT;
-  console.log('Available USD: ', usd.available);
+  output.push(['Available USD', usd.available]);
 
   if (currency) {
     let coin = currency.toUpperCase();
     if (result[coin]) {
-      console.log(coin, 'wallet');
-      console.log('Available: ', result[coin].available);
-      console.log('In Orders: ', result[coin].onOrders);
+      output.push(['Available ' + coin, result[coin].available]);
+      output.push([coin + ' in Orders: ', result[coin].onOrders]);
     }
   }
+
+  console.log(output.toString());
 
 })();
